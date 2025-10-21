@@ -5,32 +5,17 @@ import static java.time.DayOfWeek.SUNDAY;
 
 public class Reservation {
     private String roomType;
-    double price;
     private double pricePerNight;
     private int numberOfNights;
     private boolean isWeekend;
-    private int reservationTotal;
+    private double reservationTotal;
 
     public String getRoomType() {
         return roomType;
     }
     public void setRoomType(String roomType){
         this.roomType = roomType;
-    }
-
-    public double price(){
-        price = pricePerNight * numberOfNights;
-        return price;
-    }
-    public void setPrice(double price){
-        this.price = price;
-    }
-
-    public int getNumberOfNights() {
-        return numberOfNights;
-    }
-    public void setNumberOfNights(int numberOfNights) {
-        this.numberOfNights = numberOfNights;
+        this.pricePerNight = 0;
     }
 
     public boolean isWeekend() {
@@ -45,26 +30,33 @@ public class Reservation {
         isWeekend = weekend;
     }
 
-    public int getReservationTotal() {
-        return reservationTotal;
-    }
-    public void setReservationTotal(int reservationTotal) {
-        this.reservationTotal = reservationTotal;
-    }
-
     public double getPricePerNight(){
+        double base;
         if (roomType.equalsIgnoreCase("king")) {
-            pricePerNight = 139.00;
+            base = 139.00;
         } else if (roomType.equalsIgnoreCase("double")) {
-            pricePerNight = 124.00;
-        }
+            base = 124.00;
+        } else base = 0;
 
         if (isWeekend) {
-            pricePerNight = pricePerNight + (pricePerNight * 0.10);
+            base = base + (base * 0.10);
         }
-
-        return pricePerNight;
+        return base;
     }
 
+    public int getNumberOfNights() {
+        return numberOfNights;
+    }
+    public void setNumberOfNights(int numberOfNights) {
+        this.numberOfNights = numberOfNights;
+    }
+
+    public double getReservationTotal() {
+        double nightly = getPricePerNight();
+        return nightly * numberOfNights;
+    }
+    public void setReservationTotal(double reservationTotal) {
+        this.reservationTotal = reservationTotal;
+    }
 
 }
