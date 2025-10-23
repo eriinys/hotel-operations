@@ -13,6 +13,10 @@ public class Room {
         this.dirty = dirty;
     }
 
+    public Room(){
+        this.occupied = false;
+    }
+
     public int getNumberOfBeds(){
         return numberOfBeds;
     }
@@ -66,7 +70,7 @@ public class Room {
     public void cleanRoom(){
             if (dirty) {
                 dirty = false;
-                System.out.println("Room has been cleaned");
+                System.out.println("Room has been cleaned.");
             } else {
                 System.out.println("Room has been cleaned already!");
             }

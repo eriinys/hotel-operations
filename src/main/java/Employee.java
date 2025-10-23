@@ -90,16 +90,16 @@ public class Employee {
         this.punchedIn = punchedIn;
     }
 
-    public void punchTimeCard(boolean punchingIn, double punchTime) {
+    public String punchTimeCard(boolean punchingIn, double punchTime) {
 
         if (punchingIn == true && !punchedIn) {
             punchedIn = true;
-            System.out.printf("Punched in successfully at %.2f%n%n", punchTime);
+            return String.format("Punched in successfully at %.2f", punchTime);
         } else if (!punchingIn && punchedIn) {
             punchedIn = false;
-            System.out.printf("Punched out successfully at %.2f%n%n", punchTime);
+            return String.format("Punched out successfully at %.2f", punchTime);
         } else {
-            System.err.println("Invalid action.");
+            return String.format("Invalid action.");
         }
     }
 
