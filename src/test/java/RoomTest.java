@@ -8,8 +8,8 @@ class RoomTest {
     //cleanroom()
 
     @Test
-    public void checkIn_shouldBeOccupiedAndDirty(){
-       //Arange
+    public void checkIn_shouldBeOccupied(){
+       //Arrange
         Room room = new Room();
 
         //Act
@@ -17,6 +17,32 @@ class RoomTest {
 
         //Assert
         assertTrue(room.isOccupied());
+    }
+
+    @Test
+    public void checkIn_shouldBeDirty(){
+        //Arrange
+        Room room = new Room();
+
+        //Act
+        room.checkIn();
+
+        //Assert
+        assertTrue(room.isDirty());
+    }
+
+    @Test
+    public void checkIn_shouldNotCheckInIfOccupied(){
+        //Arrange
+        Room room = new Room();
+        room.isOccupied(true);
+        String expected = "Room is currently occupied.";
+
+        //Act
+        String actual = room.checkIn();
+
+        //Assert
+        assertEquals(expected, actual);
     }
 
     @Test

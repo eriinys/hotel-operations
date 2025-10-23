@@ -15,6 +15,7 @@ public class Room {
 
     public Room(){
         this.occupied = false;
+        this.dirty = false;
     }
 
     public int getNumberOfBeds(){
@@ -34,6 +35,11 @@ public class Room {
     public boolean isOccupied(){
         return occupied;
     }
+
+    public void isOccupied(boolean occupied){
+        this.occupied = occupied;
+    }
+
     public boolean isDirty() {
         return dirty;
     }
@@ -46,12 +52,13 @@ public class Room {
         }
     }
 
-    public void checkIn(){
+    public String checkIn(){
             if (isAvailable()) {
                 occupied = true;
-                System.out.println("Checked-in successfully!");
+                dirty = true;
+                return String.format("Checked-in successfully!");
             } else {
-                System.out.println("Room is currently occupied.");
+                return String.format("Room is currently occupied.");
             }
     }
 
